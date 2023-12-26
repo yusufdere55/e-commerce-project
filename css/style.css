@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: Montserrat;
+    font-weight: bold;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+s{
+    text-decoration:line-through;
+}
+
+
+h5.card-title-short{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.card-text{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 12px;
+}
+
+span.price{
+    font-size: 20px;
+}
+
+i.fa-star{
+    color: #FFB000;
+}
+
+button.sepet{
+    font-size: 18px;
+    display: flex;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    transition: .2s ease-in-out;
+    &:hover{
+        background-color: #FFB000;
+        color: #fff;
+    }
+}
+
+.badge{
+    font-size: 10px;
+}
+
+a.card-fix img{
+    transition: scale .2s ease-in-out;
+    &:hover{
+        scale: 1.05;
+    }
+}
+
+.register {
+    font-size: 14px;
+}
+
+span.detais-price{
+    font-size: 24px;
+}
+
+.add-btn{
+    justify-content: right;
+}
+
+
+.similar-products {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 15px; 
+}
+
+.similar-products .card {
+    flex: 0 0 auto; /* Don't grow or shrink the cards */
+    margin-right: 15px; /* Add some space between cards */
+}
+
+/* Kaydırma çubuğu özelleştirmesi */
+::-webkit-scrollbar {
+    width:0px; /* Genişlik */
+    height:4px ;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black; /* Kaydırma çubuğu rengi */
+    border-radius: 2px; /* Kenar yarıçapı */
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent; /* Kaydırma çubuğu yolu rengi */
+}

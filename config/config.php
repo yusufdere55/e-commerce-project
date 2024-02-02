@@ -80,4 +80,23 @@ class Config
             return $result;
         }
     }
+
+    public function getSearch($table,$data, $search)
+    {
+        $sql = "SELECT * FROM $table WHERE $data = $search ";
+        $result = mysqli_query($this->conn,$sql);
+        if(mysqli_num_rows($result)>0)
+        {
+            return $result;
+        }
+    }
+
+    public function getAdress($table,$userId)
+    {
+        $sql = "SELECT * FROM $table WHERE userID = $userId";
+        $result = mysqli_query($this->conn,$sql);
+        if(mysqli_num_rows($result)>0){
+            return $result;
+        }
+    }
 }

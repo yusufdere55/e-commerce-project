@@ -1,0 +1,14 @@
+
+
+Id:1
+Name:Duyuru 
+Text:Denemesi
+Date:2024-01-12
+
+
+
+Id:2
+Name:yusufdere
+Text:denme
+Date:2024-01-24
+

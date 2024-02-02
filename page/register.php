@@ -52,6 +52,8 @@ include_once('../shopping/php/component.php');
             </div>
         </form>
     </div>
+    
+    <?php include __DIR__."/../include/footer.php";?>
     <script>
         var phoneInput = document.querySelector('input[name="phone"]');
         var phoneError = document.getElementById('phoneError');

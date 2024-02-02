@@ -1,6 +1,6 @@
 <?php 
 session_start();
-@$id = $_SESSION["userid"];
+@$usrid = $_SESSION["userid"];
 include_once "".__DIR__ ."/../config/config.php";
 $database = new Config("localhost", "root", "", "shop","products");
 include_once('../shopping/php/component.php');
@@ -48,7 +48,8 @@ if ($category_id !== null && is_numeric($category_id)) {
 
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <?php include __DIR__."/../include/footer.php";?>
+   
 
 </body>
 

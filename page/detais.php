@@ -1,7 +1,8 @@
 <?php 
 session_start();
-@$id = $_SESSION["userid"];
-include_once "".__DIR__ ."/../config/config.php";
+
+@$usrid = $_SESSION["userid"];
+include_once __DIR__ ."/../config/config.php";
 $database = new Config("localhost", "root", "", "shop");
 include_once('../shopping/php/component.php');
 $product_id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -38,7 +39,6 @@ while ($catename = mysqli_fetch_assoc($calistir)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $row["productname"]; ?></title>
     <?php include __DIR__."../../include/link.php"; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -150,6 +150,71 @@ while ($catename = mysqli_fetch_assoc($calistir)) {
                 </div>
             </div>
         </div>
+
+
+
+        <?php
+        if ($row["productcategory"] == 1) {
+            $parcalar = $row["productfeature"];
+            $urun_idleri_dizisi = explode(",", $parcalar);
+        ?>
+
+        <div class="row my-5">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Sistemde kullanılan parçalar
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <?php
+                // $urun_idleri_dizisi kullanılmalı
+                $sayac  = 0;
+                foreach ($urun_idleri_dizisi as $urunid) {
+                    
+                    $result = $database->getSearch("products", "productid", $urunid);
+
+                   
+                        if ($result && $result->num_rows > 0) {
+                            $product = mysqli_fetch_assoc($result);
+                            if($urun_idleri_dizisi[$sayac] == $product["productid"])
+                            { ?>
+                            <!-- echo $product["productname"];
+                                echo "  ".$product["productid"]; -->
+                            <div class="parcalar d-flex mb-3">
+                                <div class="parcalar-img">
+                                    <img src="<?php echo $product['productimg']; ?>"
+                                        class="border-0 text-center img-thumbnail" alt="...">
+                                </div>
+                                <div class="parcalar-title">
+                                    <?php echo $product["productname"]." ".$product["producttext"] ?>
+                                </div>
+                            </div>
+
+                            <div class="col-10"></div>
+                            <?php }
+                            
+                        } else {
+                            echo "<div class='text-center'>Sistemde kullanılan parçalar henüz eklenmedi!</div>";
+                        }
+                   $sayac = $sayac + 1;                   
+                }
+                ?>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <?php
+        }
+        ?>
+
+
         <div class="row mt-5 ">
             <div class="col-12 border-bottom border-2 border-dark">
                 <h2 class="px-3">Benzer Ürünler</h2>
@@ -185,11 +250,10 @@ while ($catename = mysqli_fetch_assoc($calistir)) {
         <?php }}
             ?>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
+
     </div>
+    <div class="container my-5"></div>
+    <?php include __DIR__."/../include/footer.php";?>
     <script>
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')

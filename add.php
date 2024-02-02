@@ -51,16 +51,6 @@ include_once('shopping/php/component.php');
         $options = $_POST["options"];
         $star = $_POST["star"];
 
-        $imgUrl = $img;
-
-        $sql = "INSERT INTO products (productname, producttext, productprice, productdiscount, productimg, productstock, productcategory, productstar)
-        VALUES ('$name', '$text', '$price', '$discount', '$img', '$stock', '$options', '$star')";
-        $result = mysqli_query($database->conn,$sql);
-        if($result)
-        {
-            echo "kayıt başarılı";
-        }
-
         if($options == 1)
         {
             $targetDirectory = "C:/xampp/htdocs/shop/shopping/upload/computer/";
@@ -75,6 +65,18 @@ include_once('shopping/php/component.php');
         }
         $targetFileName = $targetDirectory . $name .".jpg";
         file_put_contents($targetFileName, file_get_contents($imgUrl));
+
+        $imgUrl = $img;
+
+        $sql = "INSERT INTO products (productname, producttext, productprice, productdiscount, productimg, productstock, productcategory, productstar)
+        VALUES ('$name', '$text', '$price', '$discount', '$targetFileName', '$stock', '$options', '$star')";
+        $result = mysqli_query($database->conn,$sql);
+        if($result)
+        {
+            echo "kayıt başarılı";
+        }
+
+        
         
         echo "Resim başarıyla kaydedildi: " . $targetFileName;
     }

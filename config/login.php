@@ -15,7 +15,7 @@ if(isset($_POST["btn"])){
     if(mysqli_num_rows($result)){
         $row = mysqli_fetch_array($result);
         $_SESSION["id_array"] = $_SESSION["id_array"] ?? array();
-        if(in_array($row["user_id"],$_SESSION["id_array"]))
+        if(in_array($row["id"],$_SESSION["id_array"]))
         {
             echo "Zaten bu hesaba giriş yapmışsınız";
             header('Refresh:3 ; URL=../page/login.php');
@@ -31,6 +31,9 @@ if(isset($_POST["btn"])){
             "tel" => $row["userphone"],
             "sifre" => $row["userpwd"],
             "profile_photo" => $row["userphoto"],
+            "profile_banner" => $row["userBanner"],
+            "statu" => $row["userStatu"],
+            "date" => $row["userDate"]
         );
         // tüm session bilgilerinin tutulacağı session dizisi
         $_SESSION["array"][$row["id"]] = $veriler;
@@ -40,6 +43,12 @@ if(isset($_POST["btn"])){
 
         // o anki açık oturumun üye id'si 
         $_SESSION["userid"] = $row["id"];
+
+        
+        $msj ="Giriş başarılı" ;
+        setcookie("logerror",$msj, time()+3 , "/");
+        
+
         header("Location:../index.php");
 
         }

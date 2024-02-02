@@ -1,6 +1,6 @@
 <?php
 session_start();
-@$id = $_SESSION["userid"];
+@$usrid = $_SESSION["userid"];
 include_once "".__DIR__ ."/../config/config.php";
 $database = new Config("localhost", "root", "", "shop");
 include_once('../shopping/php/component.php');
@@ -34,6 +34,8 @@ $list = $database->getCostumDataAsc("products","productprice");
             ?>
         </div>
     </div>
+    
+    <?php include __DIR__."/../include/footer.php";?>
 </body>
 
 </html>

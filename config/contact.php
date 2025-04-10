@@ -24,8 +24,8 @@ if (isset($_POST["mail-btn"])) {
     $mail->Host = 'smtp.gmail.com';
     $mail->Port = 587;
     $mail->SMTPSecure = 'tls';
-    $mail->Username = 'yusuf55dere@gmail.com';
-    $mail->Password = 'dzbr yugu uywo uxqn';
+    $mail->Username = 'example@domain.com';
+    $mail->Password = 'password';
     $mail->SetFrom($mail->Username, 'Shop.Admin');
     $mail->AddAddress($eposta, $kadi);
     $mail->CharSet = 'UTF-8';
